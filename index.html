@@ -112,383 +112,427 @@
             </div>
         </div>
 
-        <!-- 兩欄式佈局：左側輸入 & 診斷，右側圖表 & 建議 -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- 單欄瀑布流佈局：續層往下看 -->
+        <div class="max-w-4xl mx-auto space-y-8">
             
-            <!-- LEFT COLUMN: 客戶背景與資產輸入 (5/12 width) -->
-            <section class="lg:col-span-5 space-y-6">
+            <!-- 1. 客戶背景數據卡片 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8">
+                <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div class="p-2 bg-primary-50 rounded-lg">
+                        <i data-lucide="user-cog" class="w-6 h-6 text-primary-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">1. 客戶背景數據輸入</h3>
+                </div>
                 
-                <!-- 1. 客戶背景數據卡片 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6">
-                    <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
-                        <i data-lucide="user-cog" class="w-5 h-5 text-primary-600"></i>
-                        <h3 class="text-base font-bold text-slate-800">1. 客戶背景數據輸入</h3>
+                <div class="space-y-5">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">年齡</label>
+                            <select id="custAge" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium bg-white">
+                                <option value="20-30">20-30歲</option>
+                                <option value="31-40" selected>31-40歲</option>
+                                <option value="41-50">41-50歲</option>
+                                <option value="51-60">51-60歲</option>
+                                <option value="60+">60歲以上</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">婚姻狀況</label>
+                            <select id="custMarital" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium bg-white">
+                                <option value="single">單身</option>
+                                <option value="married" selected>已婚</option>
+                                <option value="divorced">離婚/喪偶</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">子女數量</label>
+                            <select id="custChildren" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium bg-white">
+                                <option value="0">無</option>
+                                <option value="1" selected>1名</option>
+                                <option value="2">2名</option>
+                                <option value="3+">3名或以上</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">子女歲數</label>
+                            <input type="text" id="custChildrenAge" value="2歲" placeholder="例如：2歲" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">供養父母</label>
+                            <select id="custParents" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium bg-white">
+                                <option value="0">無需供養</option>
+                                <option value="1">1位</option>
+                                <option value="2" selected>2位</option>
+                                <option value="3+">3位或以上</option>
+                            </select>
+                        </div>
                     </div>
-                    
-                    <div class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">年齡 / 家庭狀況</label>
-                            <input type="text" id="custAge" value="35歲，已婚，育有一子 (2歲)" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-sm font-medium">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">風險承受能力</label>
+                            <select id="riskLevel" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium bg-white">
+                                <option value="conservative">保守型 (1-2)</option>
+                                <option value="balanced" selected>平穩/平衡型 (3)</option>
+                                <option value="growth">增長型 (4)</option>
+                                <option value="aggressive">進取型 (5)</option>
+                            </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">核心理財目標</label>
-                            <input type="text" id="custGoal" value="籌備孩子15年後的高等教育基金，並在25年後實現體面退休" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-sm font-medium">
-                        </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">總規劃資產 (港幣)</label>
-                                <div class="relative">
-                                    <span class="absolute left-3.5 top-2 text-slate-400 text-sm font-medium">$</span>
-                                    <input type="number" id="totalAsset" value="5000000" class="w-full pl-7 pr-3 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-sm font-medium" oninput="updateFromTotal()">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">風險承受能力</label>
-                                <select id="riskLevel" class="w-full px-3.5 py-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-sm font-medium bg-white">
-                                    <option value="conservative">保守型 (1-2)</option>
-                                    <option value="balanced" selected>平穩/平衡型 (3)</option>
-                                    <option value="growth">增長型 (4)</option>
-                                    <option value="aggressive">進取型 (5)</option>
-                                </select>
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">總規劃資產 (港幣 - 由下方配置自動加總)</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-2.5 text-slate-400 text-sm font-medium">$</span>
+                                <input type="number" id="totalAsset" value="5000000" readonly class="w-full pl-7 pr-3 py-2.5 border border-slate-200 bg-slate-50 text-slate-500 rounded-xl focus:outline-none transition-all text-sm font-medium">
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- 2. 現時資產配置比例 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="pie-chart" class="w-5 h-5 text-primary-600"></i>
-                            <h3 class="text-base font-bold text-slate-800">2. 現時資產配置 (輸入額度自動算比)</h3>
-                        </div>
-                        <span id="pctIndicator" class="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
-                            合計 100%
-                        </span>
-                    </div>
-
-                    <div class="space-y-4">
-                        <!-- 定存 / 現金 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-600 flex items-center gap-1">
-                                    <span class="w-2.5 h-2.5 bg-blue-500 rounded-full inline-block"></span>
-                                    銀行定期 / 現金
-                                </span>
-                                <span id="cashPctTxt" class="text-slate-900 font-bold">50%</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <input type="range" id="cashRange" min="0" max="100" value="50" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-500" oninput="updateFromSliders('cash')">
-                                <div class="w-28 relative flex-shrink-0">
-                                    <span class="absolute left-2.5 top-1.5 text-slate-400 text-xs">$</span>
-                                    <input type="number" id="cashAmount" min="0" value="2500000" class="w-full pl-6 pr-2 py-1 text-right text-xs border border-slate-200 rounded-lg focus:ring-1 focus:ring-blue-500 outline-none transition-all" oninput="updateFromAmounts()">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 股票 / 基金 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-600 flex items-center gap-1">
-                                    <span class="w-2.5 h-2.5 bg-rose-500 rounded-full inline-block"></span>
-                                    股票 / 基金 (含債券)
-                                </span>
-                                <span id="stockPctTxt" class="text-slate-900 font-bold">40%</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <input type="range" id="stockRange" min="0" max="100" value="40" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-rose-500" oninput="updateFromSliders('stock')">
-                                <div class="w-28 relative flex-shrink-0">
-                                    <span class="absolute left-2.5 top-1.5 text-slate-400 text-xs">$</span>
-                                    <input type="number" id="stockAmount" min="0" value="2000000" class="w-full pl-6 pr-2 py-1 text-right text-xs border border-slate-200 rounded-lg focus:ring-1 focus:ring-rose-500 outline-none transition-all" oninput="updateFromAmounts()">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 儲蓄保險 -->
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-600 flex items-center gap-1">
-                                    <span class="w-2.5 h-2.5 bg-amber-500 rounded-full inline-block"></span>
-                                    儲蓄保險 / 穩健分紅
-                                </span>
-                                <span id="insPctTxt" class="text-slate-900 font-bold">10%</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <input type="range" id="insuranceRange" min="0" max="100" value="10" class="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-amber-500" oninput="updateFromSliders('insurance')">
-                                <div class="w-28 relative flex-shrink-0">
-                                    <span class="absolute left-2.5 top-1.5 text-slate-400 text-xs">$</span>
-                                    <input type="number" id="insuranceAmount" min="0" value="500000" class="w-full pl-6 pr-2 py-1 text-right text-xs border border-slate-200 rounded-lg focus:ring-1 focus:ring-amber-500 outline-none transition-all" oninput="updateFromAmounts()">
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">核心理財目標</label>
+                        <input type="text" id="custGoal" value="籌備孩子15年後的高等教育基金，並在25年後實現體面退休" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-500 transition-all text-sm font-medium">
                     </div>
                 </div>
-
-                <!-- 3. 現狀痛點即時診斷 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 overflow-hidden relative">
-                    <div class="absolute right-0 top-0 w-24 h-24 bg-rose-50 rounded-bl-full -z-0 pointer-events-none"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-100">
-                            <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-500"></i>
-                            <h3 class="text-base font-bold text-slate-800">1. 本港宏觀經濟「抗通脹」壓力測試</h3>
-                        </div>
-                        <div id="diagnosticResults" class="space-y-3 text-sm text-slate-600 leading-relaxed">
-                            <!-- 診斷內容由 JS 動態生成 -->
-                        </div>
-                    </div>
-                </div>
-
             </section>
 
-            <!-- RIGHT COLUMN: 可視化分析、工具矩陣、黃金建議 (7/12 width) -->
-            <section class="lg:col-span-7 space-y-8">
-                
-                <!-- 資產配置對比圖表 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-primary-600"></i>
-                            <h3 class="text-base font-bold text-slate-800">資產配置對比 (現狀 vs 建議優化)</h3>
+            <!-- 2. 現時資產配置比例 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-primary-50 rounded-lg">
+                            <i data-lucide="pie-chart" class="w-6 h-6 text-primary-600"></i>
                         </div>
-                        <span class="text-xs text-slate-400">數據隨左側實時更新</span>
+                        <h3 class="text-lg font-bold text-slate-800">2. 現時資產配置 <span class="text-sm font-normal text-slate-500">(輸入額度或拖動滑桿，自動計算比例)</span></h3>
                     </div>
+                    <span id="pctIndicator" class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
+                        合計 100%
+                    </span>
+                </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        <div class="relative h-64 flex flex-col items-center justify-center">
-                            <h4 class="text-xs font-bold text-slate-500 mb-2">【現時配置結構】</h4>
-                            <div class="w-full h-48">
-                                <canvas id="currentChart"></canvas>
+                <div class="space-y-6">
+                    <!-- 定存 / 現金 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-700 flex items-center gap-1.5">
+                                <span class="w-3 h-3 bg-blue-500 rounded-full inline-block"></span>
+                                銀行定期 / 現金
+                            </span>
+                            <span id="cashPctTxt" class="text-slate-900 font-bold text-lg">50%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="cashRange" min="0" max="100" value="50" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-500" oninput="updateFromSliders('cash')">
+                            <div class="w-32 relative flex-shrink-0">
+                                <span class="absolute left-3 top-2 text-slate-400 text-sm">$</span>
+                                <input type="number" id="cashAmount" min="0" value="2500000" class="w-full pl-7 pr-3 py-1.5 text-right text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" oninput="updateFromAmounts()">
                             </div>
                         </div>
-                        <div class="relative h-64 flex flex-col items-center justify-center">
-                            <h4 class="text-xs font-bold text-primary-600 mb-2">【建議優化配置 (50% 核心堡壘)】</h4>
-                            <div class="w-full h-48">
-                                <canvas id="recommendedChart"></canvas>
+                    </div>
+
+                    <!-- 股票 / 基金 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-700 flex items-center gap-1.5">
+                                <span class="w-3 h-3 bg-rose-500 rounded-full inline-block"></span>
+                                股票 / 基金 (含債券)
+                            </span>
+                            <span id="stockPctTxt" class="text-slate-900 font-bold text-lg">40%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="stockRange" min="0" max="100" value="40" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-rose-500" oninput="updateFromSliders('stock')">
+                            <div class="w-32 relative flex-shrink-0">
+                                <span class="absolute left-3 top-2 text-slate-400 text-sm">$</span>
+                                <input type="number" id="stockAmount" min="0" value="2000000" class="w-full pl-7 pr-3 py-1.5 text-right text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-rose-500 outline-none transition-all" oninput="updateFromAmounts()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 儲蓄保險 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="text-slate-700 flex items-center gap-1.5">
+                                <span class="w-3 h-3 bg-amber-500 rounded-full inline-block"></span>
+                                儲蓄保險 / 穩健分紅
+                            </span>
+                            <span id="insPctTxt" class="text-slate-900 font-bold text-lg">10%</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="insuranceRange" min="0" max="100" value="10" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-amber-500" oninput="updateFromSliders('insurance')">
+                            <div class="w-32 relative flex-shrink-0">
+                                <span class="absolute left-3 top-2 text-slate-400 text-sm">$</span>
+                                <input type="number" id="insuranceAmount" min="0" value="500000" class="w-full pl-7 pr-3 py-1.5 text-right text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none transition-all" oninput="updateFromAmounts()">
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- 2. 工具對比矩陣 (適合直接複製到 PPT 做成表格) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 overflow-hidden">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="grid" class="w-5 h-5 text-primary-600"></i>
-                            <h3 class="text-base font-bold text-slate-800">2. 宏觀動態配置矩陣 </h3>
-                        </div>
-                        <span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Macro 3x3 Matrix</span>
-                    </div>
-
-                    <div class="overflow-x-auto -mx-6 px-6">
-                        <table class="w-full border-collapse text-left text-xs sm:text-sm">
-                            <thead>
-                                <tr class="bg-slate-50 text-slate-600 uppercase tracking-wider font-semibold border-b border-slate-200">
-                                    <th class="py-3 px-4 font-bold text-slate-700">工具 \ 時間維度</th>
-                                    <th class="py-3 px-4 text-blue-600 font-bold">前期 (1-3年)</th>
-                                    <th class="py-3 px-4 text-emerald-600 font-bold">中期 (5-10年)</th>
-                                    <th class="py-3 px-4 text-purple-600 font-bold">長遠 (10年以上)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100 font-medium">
-                                <!-- 定期存款 -->
-                                <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="py-4 px-4 font-bold text-slate-900 flex items-center gap-1.5">
-                                        <span class="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0"></span>
-                                        銀行定期
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-slate-800">【短期息高，跑輸長線通脹】</p>
-                                        <p class="text-slate-500 text-xs mt-1">受惠當前息口，但難敵教育醫療等隱性通脹壓力。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-slate-400">【面臨再投資風險】</p>
-                                        <p class="text-slate-400 text-xs mt-1">隨未來可能啟動的降息週期，定存利率將快速下滑。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-slate-400">【購買力實質受損】</p>
-                                        <p class="text-slate-400 text-xs mt-1">在長期物價上漲下，購買力將發生確定性的縮水。</p>
-                                    </td>
-                                </tr>
-                                <!-- 股票 / 基金 -->
-                                <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="py-4 px-4 font-bold text-slate-900 flex items-center gap-1.5">
-                                        <span class="w-2 h-2 rounded-full bg-rose-500 flex-shrink-0"></span>
-                                        股票 / 基金
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-rose-600">【AI 帶動，波動劇烈】</p>
-                                        <p class="text-slate-500 text-xs mt-1">高息壓制估值，受外圍情緒影響，短期帳面起伏大。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-slate-800">【消化高息，穩健增長】</p>
-                                        <p class="text-slate-500 text-xs mt-1">優質企業具備定價權，能將高通脹轉嫁給市場。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-slate-800">【超越通脹的衛星引擎】</p>
-                                        <p class="text-slate-500 text-xs mt-1">透過長期時間平抑波動，實現資本的跨階層增長。</p>
-                                    </td>
-                                </tr>
-                                <!-- 儲蓄保險 -->
-                                <tr class="hover:bg-slate-50/50 transition-colors">
-                                    <td class="py-4 px-4 font-bold text-slate-900 flex items-center gap-1.5">
-                                        <span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></span>
-                                        儲蓄保險
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-amber-600">【強勢鎖定現有高息】</p>
-                                        <p class="text-slate-500 text-xs mt-1">此時重倉配置能提早鎖定保險公司底層高債息紅利。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-amber-700">【無懼未來降息週期】</p>
-                                        <p class="text-slate-500 text-xs mt-1">即使銀行減息，保單依然提供高於定存的穩定分紅。</p>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <p class="font-semibold text-emerald-600">【對沖通脹的現金城堡】</p>
-                                        <p class="text-slate-500 text-xs mt-1">長線複利效應爆發，完美對沖通脹，鎖定教育與養老。</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- 3. 基於宏觀環境的配置優化與「黃金比例建議」 -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 relative overflow-hidden">
-                    <div class="absolute right-0 bottom-0 w-32 h-32 bg-primary-50 rounded-tl-full -z-0 pointer-events-none"></div>
-                    <div class="relative z-10">
-                        <div class="flex items-center gap-2 mb-6 pb-3 border-b border-slate-100">
-                            <i data-lucide="award" class="w-5 h-5 text-primary-600"></i>
-                            <h3 class="text-base font-bold text-slate-800">3. 方案優化建議與黃金配置結論</h3>
-                        </div>
-
-                        <!-- 黃金配置比例卡片 -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                            <div class="bg-blue-50/60 border border-blue-100 p-4 rounded-2xl text-center">
-                                <span class="text-xs text-blue-600 font-bold block mb-1">【銀行定期防禦】</span>
-                                <span id="optCashPct" class="text-2xl font-black text-blue-700">20%</span>
-                                <p class="text-[11px] text-slate-500 mt-1">保留 6-12 個月開支作流動性</p>
-                            </div>
-                            <div class="bg-rose-50/60 border border-rose-100 p-4 rounded-2xl text-center">
-                                <span class="text-xs text-rose-600 font-bold block mb-1">【股票基金先鋒】</span>
-                                <span id="optStockPct" class="text-2xl font-black text-rose-700">30%</span>
-                                <p class="text-[11px] text-slate-500 mt-1">適度參與市場增長對沖通脹</p>
-                            </div>
-                            <div class="bg-amber-50/60 border border-amber-200 p-4 rounded-2xl text-center shadow-inner relative">
-                                <div class="absolute -top-2 -right-2 bg-rose-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full animate-bounce">核心重倉</div>
-                                <span class="text-xs text-amber-700 font-bold block mb-1">【儲蓄保險堡壘】</span>
-                                <span id="optInsPct" class="text-2xl font-black text-amber-700">50%</span>
-                                <p class="text-[11px] text-slate-500 mt-1">重倉鎖定息口，保證長線傳承</p>
-                            </div>
-                        </div>
-
-                        <!-- 策略深度解讀 -->
-                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-150 mb-6">
-                            <h4 class="text-sm font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-                                <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-                                核心策略：以「儲蓄險為底盤」的 2:3:5 防守反擊陣型
-                            </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                面對本港「明面通脹溫和 (2.0%)，暗面剛需（教育/醫療）通脹高企」的現狀，單靠定存絕對會實質貶值。
-                                我們強烈建議調整為 <span class="font-bold text-slate-800">「2:3:5」的黃金戰略比例</span>：
-                            </p>
-                            <ul class="list-disc pl-4 mt-2 space-y-1 text-xs sm:text-sm text-slate-600">
-                                <li><strong>防禦底層 (20% 銀行定期)：</strong> 對沖短期的流動性緊縮，應付家庭突發開支。</li>
-                                <li><strong>先鋒階層 (30% 股債基金)：</strong> 減低比重以控制心理壓力，但保留部分部位積極參與實體經濟增長。</li>
-                                <li><strong class="text-amber-700">核心堡壘 (50% 儲蓄險)：</strong> <span class="bg-amber-100 px-1 rounded">絕對重倉</span>。作為「抗降息與抗通脹堡壘」，趁現時保險公司底層資產息率處於高位，大額鎖定未來幾十年的穩定增值，完全免疫未來減息風險。</li>
-                            </ul>
-                        </div>
-
-                        <!-- 財富金字塔視覺化 -->
-                        <div>
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 text-center">—— 您的全新財富金字塔 (Wealth Pyramid) ——</h4>
-                            <div class="space-y-1 max-w-md mx-auto">
-                                <div class="pyramid-level h-12 bg-rose-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md" style="clip-path: polygon(35% 0%, 65% 0%, 75% 100%, 25% 100%);">
-                                    【先鋒層】30% 股票 / 基金
-                                </div>
-                                <div class="pyramid-level h-20 bg-amber-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md" style="clip-path: polygon(25% 0%, 75% 0%, 90% 100%, 10% 100%);">
-                                    【核心重倉堡壘】50% 儲蓄保險 — 長線無懼減息
-                                </div>
-                                <div class="pyramid-level h-12 bg-blue-500 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-md" style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem;">
-                                    【防禦底層】20% 銀行定期 / 現金
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- 4. 銀行定期 vs 儲蓄保險：回報對比分析 (互動計算機) -->
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 relative overflow-hidden">
-                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="calculator" class="w-5 h-5 text-primary-600"></i>
-                            <h3 class="text-base font-bold text-slate-800">4. 深度洞察：銀行定期 vs 儲蓄保險 回報對比分析</h3>
-                        </div>
-                    </div>
-                    
-                    <p class="text-xs text-slate-500 mb-5">請輸入您目前的銀行定存息率及建議的儲蓄保險預期 IRR，親自驗證「時間 x 複利」的巨大財富差距。</p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">比較本金 (港幣)</label>
-                            <input type="number" id="compPrincipal" value="1000000" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-1 focus:ring-primary-500 outline-none" oninput="updateComparison()">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">現時銀行定期年息 (%)</label>
-                            <input type="number" step="0.1" id="compBankRate" value="3.5" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-1 focus:ring-primary-500 outline-none" oninput="updateComparison()">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1.5">儲蓄保險預期 IRR (%)</label>
-                            <input type="number" step="0.1" id="compInsRate" value="5.5" class="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-1 focus:ring-primary-500 outline-none" oninput="updateComparison()">
-                        </div>
-                        <div class="md:col-span-3 pt-2">
-                             <div class="flex justify-between text-xs font-semibold text-slate-600 mb-2">
-                                 <span>滾存年期設定</span>
-                                 <span class="text-primary-600 text-sm"><span id="compYearsDisplay">15</span> 年</span>
-                             </div>
-                             <input type="range" id="compYears" min="1" max="30" value="15" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-500" oninput="updateComparison()">
-                             <div class="flex justify-between text-[10px] text-slate-400 mt-1">
-                                 <span>1年</span><span>15年</span><span>30年</span>
-                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Table & Chart output -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                        <div>
-                             <table class="w-full text-sm text-left border-collapse">
-                                 <thead>
-                                     <tr class="border-b border-slate-200 text-slate-500">
-                                         <th class="py-2 font-medium">投資工具</th>
-                                         <th class="py-2 font-medium text-right">期滿總價值</th>
-                                         <th class="py-2 font-medium text-right">財富增值倍數</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     <tr class="border-b border-slate-100">
-                                         <td class="py-3 font-semibold text-blue-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 銀行定期</td>
-                                         <td class="py-3 text-right font-bold text-slate-700" id="resBankVal">--</td>
-                                         <td class="py-3 text-right text-slate-500 font-mono" id="resBankMult">--</td>
-                                     </tr>
-                                     <tr>
-                                         <td class="py-3 font-semibold text-amber-600 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> 儲蓄保險</td>
-                                         <td class="py-3 text-right font-bold text-amber-600" id="resInsVal">--</td>
-                                         <td class="py-3 text-right text-amber-600 font-bold font-mono" id="resInsMult">--</td>
-                                     </tr>
-                                 </tbody>
-                             </table>
-                             <div class="mt-5 p-4 bg-amber-50 rounded-xl border border-amber-200 text-sm text-amber-900 leading-relaxed shadow-sm">
-                                 <strong class="block mb-1 text-rose-600 flex items-center gap-1"><i data-lucide="trending-up" class="w-4 h-4"></i> 【鎖息優勢帶來的財富裂變】</strong>
-                                 經過 <span id="resYearsText" class="font-bold">15</span> 年的複利滾存，儲蓄保險預期將比持續做銀行定期（假設息口不跌）<strong class="underline decoration-amber-300 decoration-2 underline-offset-2">額外創造出 <span id="resDiffVal" class="text-rose-600 text-base font-black">--</span> 的財富差距</strong>。若未來步入減息週期，此差距將更為懸殊。
-                             </div>
-                        </div>
-                        <div class="h-64 relative w-full">
-                            <canvas id="compChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
             </section>
+
+            <!-- 3. 現狀痛點即時診斷 (壓力測試) -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8 overflow-hidden relative">
+                <div class="absolute right-0 top-0 w-32 h-32 bg-rose-50/50 rounded-bl-full -z-0 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                        <div class="p-2 bg-rose-50 rounded-lg">
+                            <i data-lucide="activity" class="w-6 h-6 text-rose-500"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">3. 宏觀經濟「抗通脹」壓力測試</h3>
+                    </div>
+                    <!-- Point form 列表容器 -->
+                    <div id="diagnosticResults" class="space-y-4">
+                        <!-- 診斷內容由 JS 動態生成 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 資產配置對比圖表 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-primary-50 rounded-lg">
+                            <i data-lucide="bar-chart-3" class="w-6 h-6 text-primary-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">4. 資產配置對比 (現狀 vs 建議優化)</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="relative h-72 flex flex-col items-center justify-center p-4 border border-slate-100 rounded-2xl bg-slate-50/50">
+                        <h4 class="text-sm font-bold text-slate-600 mb-4">【現時配置結構】</h4>
+                        <div class="w-full h-56">
+                            <canvas id="currentChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="relative h-72 flex flex-col items-center justify-center p-4 border border-primary-100 rounded-2xl bg-primary-50/30">
+                        <h4 class="text-sm font-bold text-primary-700 mb-4">【建議優化配置】</h4>
+                        <div class="w-full h-56">
+                            <canvas id="recommendedChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 方案優化建議與黃金配置結論 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8 relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 w-40 h-40 bg-primary-50/50 rounded-tl-full -z-0 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                        <div class="p-2 bg-amber-50 rounded-lg">
+                            <i data-lucide="award" class="w-6 h-6 text-amber-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">5. 方案優化建議與黃金配置結論</h3>
+                    </div>
+
+                    <!-- 黃金配置比例卡片 -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                        <div class="bg-blue-50/60 border border-blue-100 p-5 rounded-2xl text-center">
+                            <span class="text-sm text-blue-600 font-bold block mb-1">【銀行定期防禦】</span>
+                            <span id="optCashPct" class="text-3xl font-black text-blue-700">20%</span>
+                            <p class="text-xs text-slate-500 mt-2">保留 6-12 個月開支作流動性</p>
+                        </div>
+                        <div class="bg-rose-50/60 border border-rose-100 p-5 rounded-2xl text-center">
+                            <span class="text-sm text-rose-600 font-bold block mb-1">【股票基金先鋒】</span>
+                            <span id="optStockPct" class="text-3xl font-black text-rose-700">30%</span>
+                            <p class="text-xs text-slate-500 mt-2">適度參與市場增長對沖通脹</p>
+                        </div>
+                        <div class="bg-amber-50/60 border border-amber-200 p-5 rounded-2xl text-center shadow-inner relative">
+                            <div class="absolute -top-3 -right-2 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-full animate-bounce shadow-md">核心重倉</div>
+                            <span class="text-sm text-amber-700 font-bold block mb-1">【儲蓄保險堡壘】</span>
+                            <span id="optInsPct" class="text-3xl font-black text-amber-700">50%</span>
+                            <p class="text-xs text-slate-500 mt-2">重倉鎖定息口，保證長線傳承</p>
+                        </div>
+                    </div>
+
+                    <!-- 財富金字塔視覺化 -->
+                    <div class="mb-8">
+                        <h4 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4 text-center">—— 您的全新財富金字塔 (Wealth Pyramid) ——</h4>
+                        <div class="space-y-1.5 max-w-lg mx-auto">
+                            <div class="pyramid-level h-14 bg-rose-500 text-white flex items-center justify-center font-bold text-sm shadow-md" style="clip-path: polygon(35% 0%, 65% 0%, 75% 100%, 25% 100%);">
+                                【先鋒層】30% 股票 / 基金
+                            </div>
+                            <div class="pyramid-level h-24 bg-amber-500 text-white flex flex-col items-center justify-center font-bold text-sm shadow-md" style="clip-path: polygon(25% 0%, 75% 0%, 90% 100%, 10% 100%);">
+                                <span>【核心重倉堡壘】50% 儲蓄保險</span>
+                                <span class="text-amber-100 text-xs font-normal mt-1">無懼減息，抵禦通脹</span>
+                            </div>
+                            <div class="pyramid-level h-14 bg-blue-500 text-white flex items-center justify-center font-bold text-sm shadow-md" style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem;">
+                                【防禦底層】20% 銀行定期 / 現金
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 策略深度解讀 -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <h4 class="text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600"></i>
+                            核心策略：以「儲蓄險為底盤」的防守反擊陣型
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            面對本港「明面通脹溫和 (2.0%)，暗面剛需（教育/醫療）通脹高企」的現狀，單靠定存絕對會實質貶值。
+                            我們強烈建議調整為上述的 <span class="font-bold text-slate-800">黃金戰略比例</span>：
+                        </p>
+                        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-slate-600">
+                            <li><strong>防禦底層：</strong> 對沖短期的流動性緊縮，應付家庭突發開支。</li>
+                            <li><strong>先鋒階層：</strong> 減低比重以控制心理壓力，但保留部分部位積極參與實體經濟增長。</li>
+                            <li><strong class="text-amber-700">核心堡壘：</strong> <span class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-medium">絕對重倉</span>。趁現時保險公司底層資產息率處於高位，大額鎖定未來幾十年的穩定增值，完全免疫未來減息風險。</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 6. 宏觀動態配置矩陣 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8 overflow-hidden">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-primary-50 rounded-lg">
+                            <i data-lucide="grid" class="w-6 h-6 text-primary-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">6. 宏觀動態配置矩陣 </h3>
+                    </div>
+                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-mono hidden sm:inline-block">Macro 3x3 Matrix</span>
+                </div>
+
+                <div class="overflow-x-auto -mx-6 px-6 sm:mx-0 sm:px-0">
+                    <table class="w-full border-collapse text-left text-sm">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 uppercase tracking-wider font-semibold border-b border-slate-200">
+                                <th class="py-4 px-4 font-bold text-slate-700">工具 \ 時間維度</th>
+                                <th class="py-4 px-4 text-blue-600 font-bold">前期 (1-3年)</th>
+                                <th class="py-4 px-4 text-emerald-600 font-bold">中期 (5-10年)</th>
+                                <th class="py-4 px-4 text-purple-600 font-bold">長遠 (10年以上)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <!-- 定期存款 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-5 px-4 font-bold text-slate-900 flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                                    銀行定期
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-slate-800">【短期息高，跑輸長線】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">受惠當前息口，但難敵教育醫療等通脹。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-slate-400">【面臨再投資風險】</p>
+                                    <p class="text-slate-400 text-xs mt-1.5">隨降息週期，定存利率將快速下滑。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-slate-400">【購買力實質受損】</p>
+                                    <p class="text-slate-400 text-xs mt-1.5">在長期物價上漲下，購買力確定性縮水。</p>
+                                </td>
+                            </tr>
+                            <!-- 股票 / 基金 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-5 px-4 font-bold text-slate-900 flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500 flex-shrink-0"></span>
+                                    股票 / 基金
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-rose-600">【AI 帶動，波動劇烈】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">高息壓制估值，短期帳面起伏大。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-slate-800">【消化高息，穩健增長】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">優質企業具備定價權，能轉嫁高通脹。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-slate-800">【超越通脹的引擎】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">透過時間平抑波動，實現資本增長。</p>
+                                </td>
+                            </tr>
+                            <!-- 儲蓄保險 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-5 px-4 font-bold text-slate-900 flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+                                    儲蓄保險
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-amber-600">【強勢鎖定現有高息】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">提早鎖定保險公司底層高債息紅利。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-amber-700">【無懼未來降息週期】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">即使減息，依然提供穩定的預期分紅。</p>
+                                </td>
+                                <td class="py-5 px-4">
+                                    <p class="font-semibold text-emerald-600">【對沖通脹的現金城堡】</p>
+                                    <p class="text-slate-500 text-xs mt-1.5">長線複利效應爆發，完美鎖定教育與養老。</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 7. 銀行定期 vs 儲蓄保險：回報對比分析 -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-150 p-6 sm:p-8 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-primary-50 rounded-lg">
+                            <i data-lucide="calculator" class="w-6 h-6 text-primary-600"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800">7. 深度洞察：銀行定期 vs 儲蓄保險 回報對比</h3>
+                    </div>
+                </div>
+                
+                <p class="text-sm text-slate-500 mb-6">請輸入您目前的銀行定存息率及建議的儲蓄保險預期 IRR，親自驗證「時間 x 複利」的巨大財富差距。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 bg-slate-50 p-5 rounded-xl border border-slate-100">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-2">比較本金 (港幣)</label>
+                        <input type="number" id="compPrincipal" value="1000000" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary-500 outline-none transition-all" oninput="updateComparison()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-2">現時銀行定期年息 (%)</label>
+                        <input type="number" step="0.1" id="compBankRate" value="3.5" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary-500 outline-none transition-all" oninput="updateComparison()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-2">儲蓄保險預期 IRR (%)</label>
+                        <input type="number" step="0.1" id="compInsRate" value="5.5" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-primary-500 outline-none transition-all" oninput="updateComparison()">
+                    </div>
+                    <div class="md:col-span-3 pt-2">
+                            <div class="flex justify-between text-sm font-semibold text-slate-600 mb-3">
+                                <span>滾存年期設定</span>
+                                <span class="text-primary-600 font-bold"><span id="compYearsDisplay">15</span> 年</span>
+                            </div>
+                            <input type="range" id="compYears" min="1" max="30" value="15" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-500" oninput="updateComparison()">
+                            <div class="flex justify-between text-xs text-slate-400 mt-2 font-medium">
+                                <span>1年</span><span>15年</span><span>30年</span>
+                            </div>
+                    </div>
+                </div>
+                
+                <!-- Table & Chart output -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                            <table class="w-full text-sm text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200 text-slate-500">
+                                        <th class="py-3 font-medium">投資工具</th>
+                                        <th class="py-3 font-medium text-right">期滿總價值</th>
+                                        <th class="py-3 font-medium text-right">財富增值倍數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100">
+                                        <td class="py-4 font-semibold text-blue-600 flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> 銀行定期</td>
+                                        <td class="py-4 text-right font-bold text-slate-700 text-base" id="resBankVal">--</td>
+                                        <td class="py-4 text-right text-slate-500 font-mono text-base" id="resBankMult">--</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 font-semibold text-amber-600 flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> 儲蓄保險</td>
+                                        <td class="py-4 text-right font-bold text-amber-600 text-base" id="resInsVal">--</td>
+                                        <td class="py-4 text-right text-amber-600 font-bold font-mono text-base" id="resInsMult">--</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="mt-6 p-5 bg-amber-50 rounded-2xl border border-amber-200 text-sm text-amber-900 leading-relaxed shadow-sm">
+                                <strong class="block mb-2 text-rose-600 flex items-center gap-1.5"><i data-lucide="trending-up" class="w-5 h-5"></i> 【鎖息優勢帶來的財富裂變】</strong>
+                                經過 <span id="resYearsText" class="font-bold text-base">15</span> 年的複利滾存，儲蓄保險預期將比持續做銀行定期（假設息口不跌）<strong class="underline decoration-amber-300 decoration-2 underline-offset-4">額外創造出 <span id="resDiffVal" class="text-rose-600 text-lg font-black">--</span> 的財富差距</strong>。若未來步入減息週期，此差距將更為懸殊。
+                            </div>
+                    </div>
+                    <div class="h-72 relative w-full">
+                        <canvas id="compChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
@@ -509,11 +553,14 @@
         // 初始化 Lucide 圖標
         lucide.createIcons();
 
-        // 綁定動態輸入事件
-        document.getElementById('custAge').addEventListener('input', updateDiagnosis);
+        // 綁定動態輸入事件 (更新為新的下拉選單 ID)
+        document.getElementById('custAge').addEventListener('change', updateDiagnosis);
+        document.getElementById('custMarital').addEventListener('change', updateDiagnosis);
+        document.getElementById('custChildren').addEventListener('change', updateDiagnosis);
+        document.getElementById('custChildrenAge').addEventListener('input', updateDiagnosis);
+        document.getElementById('custParents').addEventListener('change', updateDiagnosis);
         document.getElementById('custGoal').addEventListener('input', updateDiagnosis);
         document.getElementById('riskLevel').addEventListener('change', updateDiagnosis);
-        document.getElementById('totalAsset').addEventListener('input', updateDiagnosis);
 
         // 初始化圓餅圖表
         function initCharts(currentData, recommendedData) {
@@ -740,87 +787,102 @@
             const stock = parseInt(document.getElementById('stockRange').value) || 0;
             const ins = parseInt(document.getElementById('insuranceRange').value) || 0;
             const risk = document.getElementById('riskLevel').value;
-            const goal = document.getElementById('custGoal').value;
             const totalAsset = parseFloat(document.getElementById('totalAsset').value) || 0;
 
             const diagDiv = document.getElementById('diagnosticResults');
             let findings = [];
 
             const formatCurrency = (val) => new Intl.NumberFormat('zh-HK', { style: 'currency', currency: 'HKD', maximumFractionDigits: 0 }).format(val);
-            const cashAmount = parseFloat(document.getElementById('cashAmount').value) || 0;
-            const stockAmount = parseFloat(document.getElementById('stockAmount').value) || 0;
-            const insAmount = parseFloat(document.getElementById('insuranceAmount').value) || 0;
 
-            // 1. 診斷現有配置 (宏觀抗壓測試)
+            // 1. 診斷現有配置 (宏觀抗壓測試) - 精簡為 Point Form
             if (cash > 30) {
                 findings.push(`
-                    <div class="flex gap-2">
-                        <span class="text-rose-500 font-bold">●</span>
-                        <div>
-                            <strong class="text-slate-800">高息幻象與隱性通脹侵蝕 (${cash}%)：</strong>
-                            定存與現金達 ${formatCurrency(cashAmount)}。雖然享有約 3.5% 利息，但本港基本通脹約 2.0%，而教育/醫療等隱性通脹往往達 4-5%。龐大資金停泊定存，長久下來絕對無法抵禦「${goal.substring(0,25)}...」面臨的購買力貶值。
+                    <div class="bg-rose-50/60 p-4 sm:p-5 rounded-2xl border border-rose-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="alert-circle" class="w-5 h-5 text-rose-500"></i>
+                            <strong class="text-rose-700 text-sm sm:text-base">現金拖累：比例過高 (${cash}%)</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>定存利息 (~3.5%) 不敵長期隱性通脹 (教育/醫療達 4-5%)。</li>
+                            <li>大量資金閒置將導致實質購買力持續貶值。</li>
+                        </ul>
                     </div>
                 `);
             } else if (cash < 15) {
                 findings.push(`
-                    <div class="flex gap-2">
-                        <span class="text-rose-500 font-bold">●</span>
-                        <div>
-                            <strong class="text-slate-800">防禦流動性不足 (${cash}%)：</strong>
-                            定存比例僅有 ${formatCurrency(cashAmount)}。在緊縮環境中，家庭防禦底層過薄，若遇突發事件，可能被迫以跳水價變現優質長線資產。
+                    <div class="bg-blue-50/60 p-4 sm:p-5 rounded-2xl border border-blue-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="info" class="w-5 h-5 text-blue-500"></i>
+                            <strong class="text-blue-700 text-sm sm:text-base">流動性不足：防禦過薄 (${cash}%)</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>建議保留至少 6-12 個月開支作應急資金。</li>
+                            <li>避免突發事件時被迫賤賣優質長線資產。</li>
+                        </ul>
                     </div>
                 `);
             }
 
             if (stock > 45) {
                 findings.push(`
-                    <div class="flex gap-2">
-                        <span class="text-amber-500 font-bold">●</span>
-                        <div>
-                            <strong class="text-slate-800">市場重估風險暴露過高 (${stock}%)：</strong>
-                            權益部位達 ${formatCurrency(stockAmount)}。受外圍地緣及息口預期影響，股市波動劇烈。過高比例極易引發大幅回撤，擊穿心理防線。建議將部分獲利轉入防守性更強的保本收息工具。
+                    <div class="bg-amber-50/60 p-4 sm:p-5 rounded-2xl border border-amber-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="trending-down" class="w-5 h-5 text-amber-500"></i>
+                            <strong class="text-amber-700 text-sm sm:text-base">波動風險：暴露較高 (${stock}%)</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>股市受外圍情緒影響，帳面起伏加劇心理壓力。</li>
+                            <li>建議將部分獲利轉移至防守性強的保本收息工具。</li>
+                        </ul>
                     </div>
                 `);
             } else if (stock < 15) {
                 findings.push(`
-                    <div class="flex gap-2">
-                        <span class="text-amber-500 font-bold">●</span>
-                        <div>
-                            <strong class="text-slate-800">缺乏抗通脹的先鋒引擎 (${stock}%)：</strong>
-                            股票比例過低，完全錯失 AI 帶動的實體經濟爆發紅利。適度參與優質股票板塊，是跑贏長線通脹的重要關鍵。
+                    <div class="bg-amber-50/60 p-4 sm:p-5 rounded-2xl border border-amber-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-amber-500"></i>
+                            <strong class="text-amber-700 text-sm sm:text-base">缺乏增長：先鋒引擎不足 (${stock}%)</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>錯失實體經濟 (如 AI) 帶動的資本增值機會。</li>
+                            <li>適量配置股票/基金有助跑贏長期通脹。</li>
+                        </ul>
                     </div>
                 `);
             }
 
             if (ins < 40) {
                 findings.push(`
-                    <div class="flex gap-2">
-                        <span class="text-blue-500 font-bold">●</span>
-                        <div>
-                            <strong class="text-slate-800">嚴重錯失「鎖息紅利」缺口 (${ins}%)：</strong>
-                            儲蓄保險僅佔 ${formatCurrency(insAmount)}。您正在錯失 10 年難遇的高債息環境紅利，若未來啟動降息，現有銀行定存將面臨嚴峻的「再投資風險」，您缺乏一個能鎖定長線剛需的無風險現金流堡壘。
+                    <div class="bg-emerald-50/60 p-4 sm:p-5 rounded-2xl border border-emerald-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="shield-alert" class="w-5 h-5 text-emerald-600"></i>
+                            <strong class="text-emerald-700 text-sm sm:text-base">錯失紅利：鎖息缺口 (${ins}%)</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>隨着未來步入減息週期，定存將面臨嚴峻「再投資風險」。</li>
+                            <li>現時重倉儲蓄險可鎖定高債息紅利，構建對沖通脹的現金堡壘。</li>
+                        </ul>
                     </div>
                 `);
             }
 
             if (findings.length === 0) {
                 findings.push(`
-                    <div class="flex gap-2 text-emerald-600">
-                        <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
-                        <div>
-                            <strong>配置比例具備強大宏觀韌性！</strong>
-                            目前的配置完美兼顧了高息通脹下的防禦，且重倉鎖定了降息前的長期紅利，非常適合應對未來的理財目標。
+                    <div class="bg-emerald-50/60 p-4 sm:p-5 rounded-2xl border border-emerald-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600"></i>
+                            <strong class="text-emerald-700 text-sm sm:text-base">配置比例具備強大宏觀韌性！</strong>
                         </div>
+                        <ul class="list-disc pl-7 text-xs sm:text-sm text-slate-600 space-y-1.5">
+                            <li>完美兼顧高息環境下的防禦力。</li>
+                            <li>成功鎖定降息前的長期增值紅利。</li>
+                        </ul>
                     </div>
                 `);
             }
 
             diagDiv.innerHTML = findings.join('');
+            lucide.createIcons(); // 重新渲染新加入的圖標
 
             // 2. 依風險等級決定推薦配置 (2:3:5 新黃金比例)
             let recommendedData = [];
